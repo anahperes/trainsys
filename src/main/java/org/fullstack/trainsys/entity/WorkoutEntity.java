@@ -2,6 +2,7 @@ package org.fullstack.trainsys.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import enums.
 
 @Data
 @Entity
@@ -28,7 +29,7 @@ public class WorkoutEntity {
     @Column(name = "break_time", nullable = false)
     private Integer break_time;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     private WeekDay day;
 
     @Column(name = "observations")
