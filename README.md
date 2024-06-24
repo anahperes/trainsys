@@ -32,7 +32,7 @@ Este é o TrainSys, uma API Rest completa para personal trainers terem maior aut
 <br>
 
 🇺🇸
-# labPCP - Educational Management System
+# TrainSys - Management System for Personal Trainers
 
 ## 💻 PROJECT
 
