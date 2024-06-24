@@ -7,11 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("exercises")
@@ -31,6 +29,11 @@ public class ExerciseController {
         logger.debug("Novo exercício adicionado: {}", newExercise);
         return ResponseEntity.status(HttpStatus.CREATED).body(newExercise);
     }
-
+    @GetMapping("/api/exercises")
+    public  ResponseEntity<List<ExerciseEntity>> readExercise() {
+        List<ExerciseEntity> exercises = exerciseService.readExercise();
+        logger.debug("Total de exercícios encontrados: {}", exercises.size());
+        return ResponseEntity.status(HttpStatus.OK).body(exercises);
+    }
 
 }
