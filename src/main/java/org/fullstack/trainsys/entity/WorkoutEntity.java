@@ -2,7 +2,9 @@ package org.fullstack.trainsys.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import enums.
+
+import java.util.List;
+
 
 @Data
 @Entity
@@ -14,11 +16,14 @@ public class WorkoutEntity {
     private Long id;
 
     @ManyToMany
-    @JoinColumn(name = "student_id", referencedColumnName = "id", nullable = false)
-    private StudentEntity student;
+    @JoinTable(name = "workoutStudent", joinColumns = @JoinColumn(name = "workout_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+    @Column(nullable = false)
+    private List<StudentEntity> students;
 
-    @Column(name = "exercise_id", nullable = false)
-    private ExerciseEntity exercise;
+    @ManyToMany
+    @JoinTable(name = "workoutExecise", joinColumns = @JoinColumn(name = "workout_id"), inverseJoinColumns = @JoinColumn(name = "exercise_id"))
+    @Column(nullable = false)
+    private List<ExerciseEntity> exercises;
 
     @Column(name = "repetitions", nullable = false)
     private Integer repetitions;
@@ -29,7 +34,7 @@ public class WorkoutEntity {
     @Column(name = "break_time", nullable = false)
     private Integer break_time;
 
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private WeekDay day;
 
     @Column(name = "observations")
