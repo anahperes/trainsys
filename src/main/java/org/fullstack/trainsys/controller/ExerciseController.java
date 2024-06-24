@@ -36,4 +36,11 @@ public class ExerciseController {
         return ResponseEntity.status(HttpStatus.OK).body(exercises);
     }
 
+
+    @DeleteMapping("/api/exercises/{id}")
+    public ResponseEntity<Void> deleteExercise(@PathVariable Long id) {
+        exerciseService.deleteExercise(id);
+        logger.debug("Exercício deletado com sucesso com o id {}", id);
+        return ResponseEntity.noContent().build();
+    }
 }
