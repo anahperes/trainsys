@@ -38,4 +38,11 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(students);
     }
 
+    @PutMapping("/api/students/{id}")
+    public ResponseEntity<StudentEntity> updateStudent(@PathVariable Long id, @RequestBody StudentEntity updatedStudent) {
+        StudentEntity student = studentService.updateStudent(id, updatedStudent);
+        logger.debug("Estudante atualizado com o id {}", id, student);
+        return ResponseEntity.status(HttpStatus.OK).body(student);
+    }
+
 }
