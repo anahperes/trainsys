@@ -45,4 +45,11 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
+    @DeleteMapping("/api/students/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
+        logger.debug("Estudante deletado com sucesso com o id {}", id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
