@@ -1,9 +1,11 @@
 package org.fullstack.trainsys.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,7 +23,7 @@ public class UserEntity {
     private String email;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_birth")
+    @Column(name = "date_birth", nullable = false)
     private Date date_birth;
 
     @Column(name = "cpf", length = 14, nullable = false, unique = true)
@@ -31,5 +33,14 @@ public class UserEntity {
     private String password;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "plan_id", referencedColumnName = "id")
     private PlanEntity plan_id;
+
+    @OneToMany(mappedBy = "users")
+    @JsonManagedReference
+    private List<ExerciseEntity> exercises;
+
+    @OneToMany(mappedBy = "users")
+    @JsonManagedReference
+    private List<StudentEntity> students;
 }
