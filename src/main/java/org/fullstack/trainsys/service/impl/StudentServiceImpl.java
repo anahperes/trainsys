@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudentServiceImpl implements StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
@@ -28,6 +29,12 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentEntity> readStudent() {
         logger.info("Listando todos os estudantes");
         return studentRepository.findAll();
+    }
+
+    @Override
+    public Optional<StudentEntity> readStudentById(Long id) {
+        logger.info("Obtendo estudante por id: {}", id);
+        return studentRepository.findById(id);
     }
 
     @Override
