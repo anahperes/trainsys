@@ -31,6 +31,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public StudentEntity updateStudent(Long id, StudentEntity updatedStudent) {
+        logger.info("Atualizando estudante com o id: {}", id);
+        return studentRepository.save(updatedStudent);
+    }
+
+    @Override
     public void deleteStudent(Long id) {
         logger.info("Deletando estudante com o id: {}", id);
         if(!studentRepository.existsById(id)) {
