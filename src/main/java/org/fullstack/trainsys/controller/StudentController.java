@@ -1,7 +1,6 @@
 package org.fullstack.trainsys.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.fullstack.trainsys.entity.ExerciseEntity;
 import org.fullstack.trainsys.entity.StudentEntity;
 import org.fullstack.trainsys.service.StudentService;
 import org.slf4j.Logger;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -36,6 +36,13 @@ public class StudentController {
         List<StudentEntity> students = studentService.readStudent();
         logger.debug("Total de estudantes encontrados: {}", students.size());
         return ResponseEntity.status(HttpStatus.OK).body(students);
+    }
+
+    @GetMapping("/api/students/{id}")
+    public ResponseEntity<Optional<StudentEntity>> readStudentById(@PathVariable Long id) {
+        Optional<StudentEntity> student = studentService.readStudentById(id);
+        logger.debug("Estudante encontrado: {}", id, student);
+        return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
     @PutMapping("/api/students/{id}")
