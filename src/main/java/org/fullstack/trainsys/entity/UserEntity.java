@@ -34,7 +34,7 @@ public class UserEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "plan_id", referencedColumnName = "id")
-    private PlanEntity plan_id;
+    private PlanEntity plan;
 
     @OneToMany(mappedBy = "users")
     @JsonManagedReference
