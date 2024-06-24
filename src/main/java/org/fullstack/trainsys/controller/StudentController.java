@@ -8,9 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -28,6 +31,13 @@ public class StudentController {
         StudentEntity newStudent = studentService.createStudent(student);
         logger.debug("Novo estudante adicionado: {}", newStudent);
         return ResponseEntity.status(HttpStatus.CREATED).body(newStudent);
+    }
+
+    @GetMapping("/api/students")
+    public  ResponseEntity<List<StudentEntity>> readStudent() {
+        List<StudentEntity> students = studentService.readStudent();
+        logger.debug("Total de estudantes encontrados: {}", students.size());
+        return ResponseEntity.status(HttpStatus.OK).body(students);
     }
 
 }
