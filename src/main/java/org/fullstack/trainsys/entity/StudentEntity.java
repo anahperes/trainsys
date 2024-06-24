@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,7 +32,7 @@ public class StudentEntity {
     private String contact;
 
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = id)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
 
     @Column(name = "city", length = 50)
@@ -51,4 +52,7 @@ public class StudentEntity {
 
     @Column(name = "cep", length = 20)
     private String cep;
+
+    @ManyToMany(mappedBy = "students")
+    private List<WorkoutEntity> workouts;
 }
