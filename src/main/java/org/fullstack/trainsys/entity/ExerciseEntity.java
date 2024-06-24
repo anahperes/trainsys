@@ -1,7 +1,10 @@
 package org.fullstack.trainsys.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -17,5 +20,10 @@ public class ExerciseEntity {
     private String description;
 
     @ManyToOne
-    private UserEntity user_id;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
+
+    @OneToMany(mappedBy = "exercises")
+    @JsonManagedReference
+    private List<WorkoutEntity> workouts;
 }
