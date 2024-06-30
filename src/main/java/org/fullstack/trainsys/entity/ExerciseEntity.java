@@ -21,7 +21,7 @@ public class ExerciseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
+    private UserEntity users;
 
     @OneToMany(mappedBy = "exercises")
     @JsonManagedReference

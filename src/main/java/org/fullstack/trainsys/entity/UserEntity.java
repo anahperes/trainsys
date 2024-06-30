@@ -34,13 +34,13 @@ public class UserEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "plan_id", referencedColumnName = "id")
-    private PlanEntity plan;
+    private PlanEntity plans;
 
     @OneToMany(mappedBy = "users")
     @JsonManagedReference
     private List<ExerciseEntity> exercises;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private List<StudentEntity> students;
 }

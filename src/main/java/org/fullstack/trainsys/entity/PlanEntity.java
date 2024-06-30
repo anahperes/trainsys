@@ -2,6 +2,7 @@ package org.fullstack.trainsys.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.fullstack.trainsys.enums.TypePlan;
 
 import java.util.List;
 

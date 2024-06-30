@@ -18,7 +18,7 @@ public class StudentEntity {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "name", length = 255, nullable = false)
+    @Column(name = "email", length = 255, nullable = false)
     private String email;
 
     @Temporal(TemporalType.DATE)
